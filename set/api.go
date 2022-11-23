@@ -23,6 +23,16 @@ func (set *Set[T]) PushForward(value T) *Set[T] {
 	return set
 }
 
+func (set *Set[T]) PushList(items ...T) *Set[T] {
+	for _, item := range items {
+		if !helper.In[T](set.items, item) {
+			set.items = append(set.items, item)
+		}
+	}
+
+	return set
+}
+
 func (set *Set[T]) Pop() *Set[T] {
 	if set.Empty() {
 		return set

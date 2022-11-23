@@ -14,6 +14,11 @@ func (array *Array[T]) PushForward(value T) *Array[T] {
 	return array
 }
 
+func (array *Array[T]) PushList(items ...T) *Array[T] {
+	array.items = append(array.items, items...)
+	return array
+}
+
 func (array *Array[T]) Pop() *Array[T] {
 	size := array.Size()
 	if size == 0 {
@@ -31,6 +36,15 @@ func (array *Array[T]) PopForward() *Array[T] {
 	}
 
 	array.items = array.items[1:]
+	return array
+}
+
+func (array *Array[T]) Remove(index int) *Array[T] {
+	if array.Empty() || array.indexOut(index) {
+		return array
+	}
+
+	array.items = append(array.items[:index], array.items[index+1:]...)
 	return array
 }
 
