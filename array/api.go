@@ -115,3 +115,19 @@ func (array *Array[T]) Clone() *Array[T] {
 func (array *Array[T]) IndexOf(item T) int {
 	return array.find(item)
 }
+
+func (array *Array[T]) Slice() []T {
+	return array.items
+}
+
+func (array *Array[T]) SliceRange(from, to int) []T {
+	if from < 0 {
+		from = 0
+	}
+
+	if array.indexOut(to) {
+		to = array.Size()
+	}
+
+	return array.items[from:to]
+}

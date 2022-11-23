@@ -127,3 +127,19 @@ func (set *Set[T]) Clone() *Set[T] {
 func (set *Set[T]) IndexOf(item T) int {
 	return set.find(item)
 }
+
+func (set *Set[T]) Slice() []T {
+	return set.items
+}
+
+func (set *Set[T]) SliceRange(from, to int) []T {
+	if from < 0 {
+		from = 0
+	}
+
+	if set.indexOut(to) {
+		to = set.Size()
+	}
+
+	return set.items[from:to]
+}
