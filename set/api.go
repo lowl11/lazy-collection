@@ -119,3 +119,7 @@ func (set *Set[T]) Reset() *Set[T] {
 	set.iterator = 0
 	return set
 }
+
+func (set *Set[T]) Clone() *Set[T] {
+	return NewWithList[T](set.items...)
+}

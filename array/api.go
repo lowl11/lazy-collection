@@ -107,3 +107,7 @@ func (array *Array[T]) Reset() *Array[T] {
 	array.iterator = 0
 	return array
 }
+
+func (array *Array[T]) Clone() *Array[T] {
+	return NewWithList[T](array.items...)
+}
