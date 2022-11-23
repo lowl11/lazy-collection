@@ -45,6 +45,10 @@ func (array *Array[T]) Get(index int) T {
 	return array.items[index]
 }
 
+func (array *Array[T]) Empty() bool {
+	return array.Size() == 0
+}
+
 func (array *Array[T]) Size() int {
 	return len(array.items)
 }
