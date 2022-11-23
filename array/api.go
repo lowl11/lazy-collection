@@ -1,6 +1,8 @@
 package array
 
-import "sort"
+import (
+	"sort"
+)
 
 func (array *Array[T]) Push(value T) *Array[T] {
 	array.items = append(array.items, value)
@@ -49,5 +51,31 @@ func (array *Array[T]) Size() int {
 
 func (array *Array[T]) Sort(compareFunc func(i, j int) bool) *Array[T] {
 	sort.Slice(array.items, compareFunc)
+	return array
+}
+
+func (array *Array[T]) Next() bool {
+	iterator := array.iterator
+	size := array.Size()
+
+	if size == 0 || iterator == size {
+		return false
+	}
+
+	array.iterator++
+	return true
+}
+
+func (array *Array[T]) Value() T {
+	size := array.Size()
+	if size == 0 {
+		return *new(T)
+	}
+
+	return array.items[array.iterator-1]
+}
+
+func (array *Array[T]) Reset() *Array[T] {
+	array.iterator = 0
 	return array
 }

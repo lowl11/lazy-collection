@@ -1,7 +1,8 @@
 package array
 
 type Array[T any] struct {
-	items []T
+	items    []T
+	iterator int
 }
 
 func New[T any]() *Array[T] {
