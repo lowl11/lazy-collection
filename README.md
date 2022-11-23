@@ -4,4 +4,5 @@
 
 <hr>
 
-array - like ArrayList from Java
+**array** - like ArrayList from Java <br>
+**set** - collection with only unique elements <br>
