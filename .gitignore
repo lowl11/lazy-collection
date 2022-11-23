@@ -1,0 +1,8 @@
+.idea
+logs
+*.exe
+*.log
+lazy-collection
+main
+app
+main.go
