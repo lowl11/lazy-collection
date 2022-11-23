@@ -111,3 +111,7 @@ func (array *Array[T]) Reset() *Array[T] {
 func (array *Array[T]) Clone() *Array[T] {
 	return NewWithList[T](array.items...)
 }
+
+func (array *Array[T]) IndexOf(item T) int {
+	return array.find(item)
+}

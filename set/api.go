@@ -123,3 +123,7 @@ func (set *Set[T]) Reset() *Set[T] {
 func (set *Set[T]) Clone() *Set[T] {
 	return NewWithList[T](set.items...)
 }
+
+func (set *Set[T]) IndexOf(item T) int {
+	return set.find(item)
+}
