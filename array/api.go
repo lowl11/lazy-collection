@@ -5,6 +5,11 @@ func (array *Array[T]) Push(value T) *Array[T] {
 	return array
 }
 
+func (array *Array[T]) PushForward(value T) *Array[T] {
+	array.items = append([]T{value}, array.items...)
+	return array
+}
+
 func (array *Array[T]) Pop() *Array[T] {
 	size := array.Size()
 	if size == 0 {
@@ -12,6 +17,16 @@ func (array *Array[T]) Pop() *Array[T] {
 	}
 
 	array.items = array.items[:size-1]
+	return array
+}
+
+func (array *Array[T]) PopForward() *Array[T] {
+	size := array.Size()
+	if size == 0 {
+		return array
+	}
+
+	array.items = array.items[1:]
 	return array
 }
 
