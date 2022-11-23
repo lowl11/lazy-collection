@@ -124,6 +124,18 @@ func (set *Set[T]) Clone() *Set[T] {
 	return NewWithList[T](set.items...)
 }
 
+func (set *Set[T]) CloneRange(from, to int) *Set[T] {
+	if from < 0 {
+		from = 0
+	}
+
+	if set.indexOut(to) {
+		to = set.Size()
+	}
+
+	return NewWithList[T](set.SliceRange(from, to)...)
+}
+
 func (set *Set[T]) IndexOf(item T) int {
 	return set.find(item)
 }
