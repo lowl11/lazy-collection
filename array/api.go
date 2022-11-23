@@ -48,6 +48,16 @@ func (array *Array[T]) Remove(index int) *Array[T] {
 	return array
 }
 
+func (array *Array[T]) RemoveAll() *Array[T] {
+	array.items = make([]T, 0)
+	return array
+}
+
+func (array *Array[T]) Clear() *Array[T] {
+	array.items = make([]T, 0, array.Size())
+	return array
+}
+
 func (array *Array[T]) Get(index int) T {
 	size := array.Size()
 

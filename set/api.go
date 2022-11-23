@@ -60,6 +60,16 @@ func (set *Set[T]) Remove(index int) *Set[T] {
 	return set
 }
 
+func (set *Set[T]) RemoveAll() *Set[T] {
+	set.items = make([]T, 0)
+	return set
+}
+
+func (set *Set[T]) Clear() *Set[T] {
+	set.items = make([]T, 0, set.Size())
+	return set
+}
+
 func (set *Set[T]) Empty() bool {
 	return set.Size() == 0
 }
