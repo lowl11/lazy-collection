@@ -2,6 +2,7 @@ package set
 
 import (
 	"github.com/lowl11/lazy-collection/helper"
+	"sort"
 )
 
 func (set *Set[T]) Push(value T) *Set[T] {
@@ -57,4 +58,35 @@ func (set *Set[T]) Get(index int) T {
 	}
 
 	return set.items[index]
+}
+
+func (set *Set[T]) Sort(compareFunc func(i, j int) bool) *Set[T] {
+	sort.Slice(set.items, compareFunc)
+	return set
+}
+
+func (set *Set[T]) Next() bool {
+	iterator := set.iterator
+	size := set.Size()
+
+	if size == 0 || iterator == size {
+		return false
+	}
+
+	set.iterator++
+	return true
+}
+
+func (set *Set[T]) Value() T {
+	size := set.Size()
+	if size == 0 {
+		return *new(T)
+	}
+
+	return set.items[set.iterator-1]
+}
+
+func (set *Set[T]) Reset() *Set[T] {
+	set.iterator = 0
+	return set
 }
