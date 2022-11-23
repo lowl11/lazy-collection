@@ -163,3 +163,12 @@ func (array *Array[T]) SliceRange(from, to int) []T {
 
 	return array.items[from:to]
 }
+
+// Select parse collection to another one with similar data type
+func (array *Array[T]) Select(selectFunc func(sourceItem T) any) *Array[any] {
+	newCollection := NewWithSize[any](array.Size())
+	for _, item := range array.items {
+		newCollection.Push(selectFunc(item))
+	}
+	return newCollection
+}

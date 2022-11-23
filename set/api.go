@@ -175,3 +175,12 @@ func (set *Set[T]) SliceRange(from, to int) []T {
 
 	return set.items[from:to]
 }
+
+// Select parse collection to another one with similar data type
+func (set *Set[T]) Select(selectFunc func(sourceItem T) any) *Set[any] {
+	newCollection := NewWithSize[any](set.Size())
+	for _, item := range set.items {
+		newCollection.Push(selectFunc(item))
+	}
+	return newCollection
+}
