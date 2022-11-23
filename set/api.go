@@ -51,6 +51,15 @@ func (set *Set[T]) PopForward() *Set[T] {
 	return set
 }
 
+func (set *Set[T]) Remove(index int) *Set[T] {
+	if set.Empty() || set.indexOut(index) {
+		return set
+	}
+
+	set.items = append(set.items[:index], set.items[index+1:]...)
+	return set
+}
+
 func (set *Set[T]) Empty() bool {
 	return set.Size() == 0
 }
