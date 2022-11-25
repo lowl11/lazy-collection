@@ -111,6 +111,15 @@ func (typeList *TypeList[T, X]) CopyTo(copyArray *TypeList[T, X]) *TypeList[T, X
 	return typeList
 }
 
+// Reverse make reverse collection
+func (typeList *TypeList[T, X]) Reverse() *TypeList[T, X] {
+	for i, j := 0, len(typeList.items)-1; i < j; i, j = i+1, j-1 {
+		typeList.items[i], typeList.items[j] = typeList.items[j], typeList.items[i]
+	}
+
+	return typeList
+}
+
 // Next moves iterator
 func (typeList *TypeList[T, X]) Next() bool {
 	iterator := typeList.iterator

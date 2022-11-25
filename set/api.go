@@ -122,6 +122,15 @@ func (set *Set[T]) CopyTo(copyArray *Set[T]) *Set[T] {
 	return set
 }
 
+// Reverse make reverse collection
+func (set *Set[T]) Reverse() *Set[T] {
+	for i, j := 0, len(set.items)-1; i < j; i, j = i+1, j-1 {
+		set.items[i], set.items[j] = set.items[j], set.items[i]
+	}
+
+	return set
+}
+
 // Next moves iterator
 func (set *Set[T]) Next() bool {
 	iterator := set.iterator

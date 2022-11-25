@@ -110,6 +110,15 @@ func (array *Array[T]) CopyTo(copyArray *Array[T]) *Array[T] {
 	return array
 }
 
+// Reverse make reverse collection
+func (array *Array[T]) Reverse() *Array[T] {
+	for i, j := 0, len(array.items)-1; i < j; i, j = i+1, j-1 {
+		array.items[i], array.items[j] = array.items[j], array.items[i]
+	}
+
+	return array
+}
+
 // Next moves iterator
 func (array *Array[T]) Next() bool {
 	iterator := array.iterator
