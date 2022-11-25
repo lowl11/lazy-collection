@@ -116,6 +116,12 @@ func (set *Set[T]) Sort(compareFunc func(i, j int) bool) *Set[T] {
 	return set
 }
 
+// CopyTo copy collection to given
+func (set *Set[T]) CopyTo(copyArray *Set[T]) *Set[T] {
+	copyArray = NewWithList(set.items...)
+	return set
+}
+
 // Next moves iterator
 func (set *Set[T]) Next() bool {
 	iterator := set.iterator

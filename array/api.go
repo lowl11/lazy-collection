@@ -104,6 +104,12 @@ func (array *Array[T]) Sort(compareFunc func(i, j int) bool) *Array[T] {
 	return array
 }
 
+// CopyTo copy collection to given
+func (array *Array[T]) CopyTo(copyArray *Array[T]) *Array[T] {
+	copyArray = NewWithList(array.items...)
+	return array
+}
+
 // Next moves iterator
 func (array *Array[T]) Next() bool {
 	iterator := array.iterator

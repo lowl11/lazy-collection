@@ -105,6 +105,12 @@ func (typeList *TypeList[T, X]) Sort(compareFunc func(i, j int) bool) *TypeList[
 	return typeList
 }
 
+// CopyTo copy collection to given
+func (typeList *TypeList[T, X]) CopyTo(copyArray *TypeList[T, X]) *TypeList[T, X] {
+	copyArray = NewWithList[T, X](typeList.items...)
+	return typeList
+}
+
 // Next moves iterator
 func (typeList *TypeList[T, X]) Next() bool {
 	iterator := typeList.iterator
