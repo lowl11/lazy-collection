@@ -45,6 +45,16 @@ func (typeList *TypeList[T, X]) PopForward() *TypeList[T, X] {
 	return typeList
 }
 
+// Set add element on index on the list
+func (typeList *TypeList[T, X]) Set(index int, value T) *TypeList[T, X] {
+	if typeList.indexOut(index) {
+		return typeList
+	}
+
+	typeList.items[index] = value
+	return typeList
+}
+
 // Remove remove element on index
 func (typeList *TypeList[T, X]) Remove(index int) *TypeList[T, X] {
 	if typeList.Empty() || typeList.indexOut(index) {

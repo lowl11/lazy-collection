@@ -44,6 +44,16 @@ func (array *Array[T]) PopForward() *Array[T] {
 	return array
 }
 
+// Set add element on index on the list
+func (array *Array[T]) Set(index int, value T) *Array[T] {
+	if array.indexOut(index) {
+		return array
+	}
+
+	array.items[index] = value
+	return array
+}
+
 // Remove remove element on index
 func (array *Array[T]) Remove(index int) *Array[T] {
 	if array.Empty() || array.indexOut(index) {

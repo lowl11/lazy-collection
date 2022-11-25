@@ -56,6 +56,16 @@ func (set *Set[T]) PopForward() *Set[T] {
 	return set
 }
 
+// Set add element on index on the list
+func (set *Set[T]) Set(index int, value T) *Set[T] {
+	if set.indexOut(index) {
+		return set
+	}
+
+	set.items[index] = value
+	return set
+}
+
 // Remove remove element on index
 func (set *Set[T]) Remove(index int) *Set[T] {
 	if set.Empty() || set.indexOut(index) {
