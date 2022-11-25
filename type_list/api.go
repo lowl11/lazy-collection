@@ -147,6 +147,11 @@ func (typeList *TypeList[T, X]) IndexOf(item T) int {
 	return typeList.find(item)
 }
 
+// Contains true if collection owns element
+func (typeList *TypeList[T, X]) Contains(item T) bool {
+	return typeList.find(item) != -1
+}
+
 // Slice returns slice of collection
 func (typeList *TypeList[T, X]) Slice() []T {
 	return typeList.items

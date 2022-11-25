@@ -158,6 +158,11 @@ func (set *Set[T]) IndexOf(item T) int {
 	return set.find(item)
 }
 
+// Contains true if collection owns element
+func (set *Set[T]) Contains(item T) bool {
+	return set.find(item) != -1
+}
+
 // Slice returns slice of collection
 func (set *Set[T]) Slice() []T {
 	return set.items

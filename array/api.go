@@ -146,6 +146,11 @@ func (array *Array[T]) IndexOf(item T) int {
 	return array.find(item)
 }
 
+// Contains true if collection owns element
+func (array *Array[T]) Contains(item T) bool {
+	return array.find(item) != -1
+}
+
 // Slice returns slice of collection
 func (array *Array[T]) Slice() []T {
 	return array.items
