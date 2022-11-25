@@ -189,3 +189,16 @@ func (set *Set[T]) Select(selectFunc func(sourceItem T) any) *Set[any] {
 	}
 	return newCollection
 }
+
+// Sub returns new collection with range from this one
+func (set *Set[T]) Sub(from, to int) *Set[T] {
+	if from < 0 {
+		from = 0
+	}
+
+	if set.indexOut(to) {
+		to = set.Size()
+	}
+
+	return NewWithList(set.SliceRange(from, to)...)
+}

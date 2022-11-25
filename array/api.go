@@ -177,3 +177,16 @@ func (array *Array[T]) Select(selectFunc func(sourceItem T) any) *Array[any] {
 	}
 	return newCollection
 }
+
+// Sub returns new collection with range from this one
+func (array *Array[T]) Sub(from, to int) *Array[T] {
+	if from < 0 {
+		from = 0
+	}
+
+	if array.indexOut(to) {
+		to = array.Size()
+	}
+
+	return NewWithList(array.SliceRange(from, to)...)
+}

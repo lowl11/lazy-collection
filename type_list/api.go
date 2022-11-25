@@ -178,3 +178,16 @@ func (typeList *TypeList[T, X]) Select(selectFunc func(sourceItem T) X) *array.A
 	}
 	return newCollection
 }
+
+// Sub returns new collection with range from this one
+func (typeList *TypeList[T, X]) Sub(from, to int) *TypeList[T, X] {
+	if from < 0 {
+		from = 0
+	}
+
+	if typeList.indexOut(to) {
+		to = typeList.Size()
+	}
+
+	return NewWithList[T, X](typeList.SliceRange(from, to)...)
+}
