@@ -13,3 +13,9 @@ func In[T any](collection []T, value T) bool {
 
 	return false
 }
+
+func Fill[T any](collection []T, fill []T) {
+	for index, item := range fill {
+		collection[index] = item
+	}
+}
