@@ -1,13 +1,12 @@
 package set
 
 import (
-	"github.com/lowl11/lazy-collection/helper"
 	"sort"
 )
 
 // Push add element to the end
 func (set *Set[T]) Push(value T) *Set[T] {
-	if helper.In[T](set.items, value) {
+	if set.Contains(value) {
 		return set
 	}
 
@@ -17,7 +16,7 @@ func (set *Set[T]) Push(value T) *Set[T] {
 
 // PushForward add element to the start
 func (set *Set[T]) PushForward(value T) *Set[T] {
-	if helper.In[T](set.items, value) {
+	if set.Contains(value) {
 		return set
 	}
 
@@ -28,7 +27,7 @@ func (set *Set[T]) PushForward(value T) *Set[T] {
 // PushList add slice/array of elements to the end
 func (set *Set[T]) PushList(items ...T) *Set[T] {
 	for _, item := range items {
-		if !helper.In[T](set.items, item) {
+		if !set.Contains(item) {
 			set.items = append(set.items, item)
 		}
 	}

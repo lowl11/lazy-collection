@@ -1,15 +1,11 @@
 package set
 
+import "github.com/lowl11/lazy-collection/helper"
+
 func (set *Set[T]) indexOut(index int) bool {
 	return index >= set.Size()
 }
 
 func (set *Set[T]) find(value T) int {
-	for index, item := range set.items {
-		if any(item) == any(value) {
-			return index
-		}
-	}
-
-	return -1
+	return helper.IndexOf[T](set.items, value)
 }
