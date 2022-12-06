@@ -215,6 +215,21 @@ func (typeList *TypeList[T, X]) Select(selectFunc func(sourceItem T) X) *array.A
 	return newCollection
 }
 
+// Where removes elements which does not match for condition
+func (typeList *TypeList[T, X]) Where(whereFunc func(iterator T) bool) *TypeList[T, X] {
+	newCollection := NewWithSize[T, X](typeList.Size())
+
+	for _, item := range typeList.items {
+		if !whereFunc(item) {
+			continue
+		}
+
+		newCollection.Push(item)
+	}
+
+	return newCollection
+}
+
 // Sub returns new collection with range from this one
 func (typeList *TypeList[T, X]) Sub(from, to int) *TypeList[T, X] {
 	if from < 0 {

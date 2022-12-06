@@ -214,6 +214,21 @@ func (array *Array[T]) Select(selectFunc func(sourceItem T) any) *Array[any] {
 	return newCollection
 }
 
+// Where removes elements which does not match for condition
+func (array *Array[T]) Where(whereFunc func(iterator T) bool) *Array[T] {
+	newCollection := NewWithSize[T](array.Size())
+
+	for _, item := range array.items {
+		if !whereFunc(item) {
+			continue
+		}
+
+		newCollection.Push(item)
+	}
+
+	return newCollection
+}
+
 // Sub returns new collection with range from this one
 func (array *Array[T]) Sub(from, to int) *Array[T] {
 	if from < 0 {

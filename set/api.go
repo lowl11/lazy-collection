@@ -225,6 +225,21 @@ func (set *Set[T]) Select(selectFunc func(sourceItem T) any) *Set[any] {
 	return newCollection
 }
 
+// Where removes elements which does not match for condition
+func (set *Set[T]) Where(whereFunc func(iterator T) bool) *Set[T] {
+	newCollection := NewWithSize[T](set.Size())
+
+	for _, item := range set.items {
+		if !whereFunc(item) {
+			continue
+		}
+
+		newCollection.Push(item)
+	}
+
+	return newCollection
+}
+
 // Sub returns new collection with range from this one
 func (set *Set[T]) Sub(from, to int) *Set[T] {
 	if from < 0 {
