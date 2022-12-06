@@ -176,6 +176,17 @@ func (array *Array[T]) Contains(item T) bool {
 	return array.find(item) != -1
 }
 
+// ContainsFunc check for exist with given func
+func (array *Array[T]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
+	for i := 0; i < array.Size(); i++ {
+		if conditionFunc(array.items[i]) {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Slice returns slice of collection
 func (array *Array[T]) Slice() []T {
 	return array.items

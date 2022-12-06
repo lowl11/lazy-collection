@@ -177,6 +177,17 @@ func (typeList *TypeList[T, X]) Contains(item T) bool {
 	return typeList.find(item) != -1
 }
 
+// ContainsFunc check for exist with given func
+func (typeList *TypeList[T, X]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
+	for i := 0; i < typeList.Size(); i++ {
+		if conditionFunc(typeList.items[i]) {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Slice returns slice of collection
 func (typeList *TypeList[T, X]) Slice() []T {
 	return typeList.items

@@ -187,6 +187,17 @@ func (set *Set[T]) Contains(item T) bool {
 	return set.find(item) != -1
 }
 
+// ContainsFunc check for exist with given func
+func (set *Set[T]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
+	for i := 0; i < set.Size(); i++ {
+		if conditionFunc(set.items[i]) {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Slice returns slice of collection
 func (set *Set[T]) Slice() []T {
 	return set.items
