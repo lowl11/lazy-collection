@@ -178,13 +178,24 @@ func (array *Array[T]) Contains(item T) bool {
 
 // ContainsFunc check for exist with given func
 func (array *Array[T]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
-	for i := 0; i < array.Size(); i++ {
-		if conditionFunc(array.items[i]) {
+	for _, item := range array.items {
+		if conditionFunc(item) {
 			return true
 		}
 	}
 
 	return false
+}
+
+// Single find one item by expression or null
+func (array *Array[T]) Single(expression func(iterator T) bool) *T {
+	for _, item := range array.items {
+		if expression(item) {
+			return &item
+		}
+	}
+
+	return nil
 }
 
 // Slice returns slice of collection

@@ -189,13 +189,24 @@ func (set *Set[T]) Contains(item T) bool {
 
 // ContainsFunc check for exist with given func
 func (set *Set[T]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
-	for i := 0; i < set.Size(); i++ {
-		if conditionFunc(set.items[i]) {
+	for _, item := range set.items {
+		if conditionFunc(item) {
 			return true
 		}
 	}
 
 	return false
+}
+
+// Single find one item by expression or null
+func (set *Set[T]) Single(expression func(iterator T) bool) *T {
+	for _, item := range set.items {
+		if expression(item) {
+			return &item
+		}
+	}
+
+	return nil
 }
 
 // Slice returns slice of collection

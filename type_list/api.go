@@ -179,13 +179,24 @@ func (typeList *TypeList[T, X]) Contains(item T) bool {
 
 // ContainsFunc check for exist with given func
 func (typeList *TypeList[T, X]) ContainsFunc(conditionFunc func(iterator T) bool) bool {
-	for i := 0; i < typeList.Size(); i++ {
-		if conditionFunc(typeList.items[i]) {
+	for _, item := range typeList.items {
+		if conditionFunc(item) {
 			return true
 		}
 	}
 
 	return false
+}
+
+// Single find one item by expression or null
+func (typeList *TypeList[T, X]) Single(expression func(iterator T) bool) *T {
+	for _, item := range typeList.items {
+		if expression(item) {
+			return &item
+		}
+	}
+
+	return nil
 }
 
 // Slice returns slice of collection
